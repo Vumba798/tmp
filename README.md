@@ -143,8 +143,8 @@ Edites README.md
 
 ```ShellSession
 $ git status
-$ git add .
-$ git commit -m"added sources"
+$ git add .     #all untracked files is tracked now, all not staged for commit files is staged now
+$ git commit -m"added sources"  #5 files changed, 251 insertions(+)
 $ git push origin master
 ```
 Makes changes on remote repo
