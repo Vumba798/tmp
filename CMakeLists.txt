@@ -4,6 +4,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 option(BUILD_EXAMPLES "Build examples" OFF)
 option(BUILD_TESTS "Build tests" OFF)
+option(COVERAGE ON)
 
 project(print)
 
@@ -42,5 +43,12 @@ if(BUILD_TESTS)
     add_executable(check ${${PROJECT_NAME}_TEST_SOURCES})
     target_link_libraries(check ${PROJECT_NAME} gtest_main)
     add_test(NAME check COMMAND check)
+    if(COVERAGE)
+        target_compile_options(check PRIVATE --coverage)
+    endif(COVERAGE)
 endif()
 
+before_install:
+    - pip install --user cpp-coveralls
+after_success:
+    - coveralls --root . -E ".*gtest.*" -E ".*CMakeFiles.*"

@@ -7,9 +7,14 @@ addons:
        - cmake
        - cmake-data
 
+before_install:
+  - pip install -user cpp-coveralls
+
 script:
   - cmake -H. -B_build -DCMAKE_INSTALL_PREFIX=_install -DBUILD_TESTS=ON
   - cmake --build _build
   - cmake --build _build --target install
   - cmake --build _build --target test -- ARGS=--verbose
 
+after_success:
+  - coveralls --root . -E ".*gtest.*" -E ".*CMakeFiles.*"
