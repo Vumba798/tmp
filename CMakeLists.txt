@@ -48,7 +48,3 @@ if(BUILD_TESTS)
     endif(COVERAGE)
 endif()
 
-before_install:
-    - pip install --user cpp-coveralls
-after_success:
-    - coveralls --root . -E ".*gtest.*" -E ".*CMakeFiles.*"
