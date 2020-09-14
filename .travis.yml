@@ -8,7 +8,7 @@ addons:
        - cmake-data
 
 before_install:
-  - pip install -user cpp-coveralls
+  - pip install --user cpp-coveralls
 
 script:
   - cmake -H. -B_build -DCMAKE_INSTALL_PREFIX=_install -DBUILD_TESTS=ON
